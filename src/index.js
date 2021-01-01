@@ -1,9 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import EmployeesList from './EmployeesList';
 import reportWebVitals from './reportWebVitals';
+import './App.css';
 
 ReactDOM.render(
   <React.StrictMode>
+    <EmployeesList />
   </React.StrictMode>,
   document.getElementById('root')
 );
