@@ -19,6 +19,12 @@ function EmployeesList() {
       ];
     });
   }
+  function removeEmployees(e) {
+    const removedEmployee = e.target.getAttribute("name");
+    setEmployees((employees) => {
+      return employees.filter((employee) => employee.name !== removedEmployee);
+    });
+  }
 
   const [employees, setEmployees] = useState([
     {
@@ -49,10 +55,24 @@ function EmployeesList() {
       <div className="title">
         <h1>Employees List</h1>
       </div>
-      <button className="button" onClick={handleAddEmployee}>Add Employee</button>
+      <button className="button" onClick={handleAddEmployee}>
+        Add Employee
+      </button>
+      <div id="root"></div>
       <div className="list">
         {employees.map((employee) => {
-          return <EmployeeComp key={employee.name} EmployeesData={employee} />;
+          return (
+            <div key={employee.name}>
+              <EmployeeComp EmployeesData={employee} />
+              <button
+                name={employee.name}
+                className="button"
+                onClick={removeEmployees}
+              >
+                Remove Employee
+              </button>
+            </div>
+          );
         })}
       </div>
     </>
