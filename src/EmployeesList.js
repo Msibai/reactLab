@@ -19,7 +19,8 @@ function EmployeesList() {
       ];
     });
   }
-  function removeEmployees(e) {
+
+  function HandleRemoveEmployee(e) {
     const removedEmployee = e.target.getAttribute("name");
     setEmployees((employees) => {
       return employees.filter((employee) => employee.name !== removedEmployee);
@@ -63,14 +64,10 @@ function EmployeesList() {
         {employees.map((employee) => {
           return (
             <div key={employee.name}>
-              <EmployeeComp EmployeesData={employee} />
-              <button
-                name={employee.name}
-                className="button"
-                onClick={removeEmployees}
-              >
-                Remove Employee
-              </button>
+              <EmployeeComp
+                EmployeesData={employee}
+                removeEmployee={HandleRemoveEmployee}
+              />
             </div>
           );
         })}
