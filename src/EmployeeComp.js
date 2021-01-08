@@ -14,7 +14,7 @@ function EmployeeComp(props) {
         <p>Phone: {props.EmployeesData.phone}</p>
         <p>Skills: {props.EmployeesData.skills}</p>
         <button
-          name={props.EmployeesData.name}
+          id={props.EmployeesData.id}
           className="button"
           onClick={props.removeEmployee}
         >

@@ -29,6 +29,16 @@ function EmployeesList() {
       avatar: male,
     },
   ]);
+
+  const employeesObj = employees.map((employee, i) => ({
+    id: i,
+    name: employee.name,
+    email: employee.email,
+    phone: employee.phone,
+    skills: employee.skills,
+    avatar: employee.avatar,
+  }));
+
   const [form, setForm] = useState(false);
 
   function handleForm() {
@@ -61,10 +71,9 @@ function EmployeesList() {
   }
 
   function HandleRemoveEmployee(e) {
-    const removedEmployee = e.target.getAttribute("name");
-    setEmployees((employees) => {
-      return employees.filter((employee) => employee.name !== removedEmployee);
-    });
+    const removedEmployee = parseInt(e.target.getAttribute("id"));
+    employees.splice(removedEmployee, 1);
+    setEmployees((employees) => [...employees]);
   }
 
   return (
@@ -82,9 +91,9 @@ function EmployeesList() {
       )}
       <div id="root"></div>
       <div className="list">
-        {employees.map((employee) => {
+        {employeesObj.map((employee) => {
           return (
-            <div key={employee.name}>
+            <div key={employee.id} id={employee.id}>
               <EmployeeComp
                 EmployeesData={employee}
                 removeEmployee={HandleRemoveEmployee}
